@@ -21,10 +21,8 @@ public class CategoriaResources {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> find(@PathVariable Integer id){
-
-        Categoria obj = service.buscar(id);
-
-       
+        //Quando for for Lançada uma exception por não encontar o id , ela sera capturada por um handler
+        Categoria obj = service.buscar(id); 
         return ResponseEntity.ok().body(obj);
     }
 

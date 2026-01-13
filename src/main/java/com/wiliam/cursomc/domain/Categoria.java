@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,6 +23,12 @@ public class Categoria implements Serializable{
     private String nome;
 
     //produtos é o nome do papael no nosso modelo conceitual
+    //no caso de REferencia Ciclica (Quando um referencia chama uma lista de objetos e esse Objeto chama a lista do objeto anterior e esse processo ocorre indefinidamente)
+    //Para isso devemos definir qual o objeto possuira uma lista de um objeto sem entrar em loop
+    // nesse casso nosso endpoint consuta categoria trara uma lista de produtos , para isso marcamos no relacionamento de Categoria com Produto
+    //@JsonManagedReference e do outro lado do relacionamento @JsonBackReference (Que diz que o outro lado da associação ja buscou os objetos e sendo assim não buscara mais)
+    
+    @JsonManagedReference
     @ManyToMany(mappedBy = "categorias")
     private List<Produto> produtos = new ArrayList<>();
 

@@ -6,6 +6,9 @@ import java.util.List;
 
 import org.hibernate.annotations.ManyToAny;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,7 +27,9 @@ public class Produto implements Serializable{
     private Double preco;
     
     //Quando temos uma relação muitos para muitos , temo que criar uma tabela intermediaria
-    // a anotation @jointable ele definira que sera a tabela intermediaria em nosso banco de dados  
+    // a anotation @jointable ele definira que sera a tabela intermediaria em nosso banco de dados 
+    // @JsonBackReference (Que diz que o outro lado da associação ja buscou os objetos e sendo assim não buscara mais)
+    @JsonBackReference
     @ManyToAny
     @JoinTable(name = "Produto_Categoria",
                joinColumns = @JoinColumn(name = "produto_id"), // campo da tabela correspondente FK do Produto (classe onde estamos)
