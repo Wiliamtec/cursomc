@@ -1,11 +1,16 @@
 package com.wiliam.cursomc.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Categoria implements Serializable{
@@ -15,6 +20,10 @@ public class Categoria implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
+
+    //produtos é o nome do papael no nosso modelo conceitual
+    @ManyToMany(mappedBy = "categorias")
+    private List<Produto> produtos = new ArrayList<>();
 
     public Categoria(){
 
@@ -41,6 +50,17 @@ public class Categoria implements Serializable{
         this.nome = nome;
     }
 
+    
+
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
+    }
+
+    //Implementação padrão do hash code e equals somente id 
     @Override
     public int hashCode() {
         final int prime = 31;
