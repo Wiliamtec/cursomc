@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.wiliam.cursomc.domain.enums.TipoCliente;
 
 import jakarta.persistence.CollectionTable;
@@ -29,6 +30,7 @@ private static final long serialVersionUID = 1L;
     private Integer tipo;
 
     //Varios endereços para um cliente 
+    @JsonManagedReference
     @OneToMany(mappedBy = "cliente") //campo de mapeamento na tabela Endereço
     private List<Endereco>enderecos = new ArrayList<>();
 
