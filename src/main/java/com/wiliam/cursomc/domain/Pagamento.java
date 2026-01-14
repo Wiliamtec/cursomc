@@ -2,6 +2,7 @@ package com.wiliam.cursomc.domain;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.wiliam.cursomc.domain.enums.EstadoPagamento;
 
 import jakarta.persistence.Entity;
@@ -22,7 +23,8 @@ private static final long serialVersionUID = 1L;
     @Id
     private Integer id;
     private Integer estado;
-
+    
+    @JsonBackReference
     @OneToOne
     @JoinColumn(name = "pedido_id")
     @MapsId //Garante que tanto o pedido quanto o pagamento tenham o mesmo id
