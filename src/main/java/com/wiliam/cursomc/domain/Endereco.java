@@ -2,7 +2,8 @@ package com.wiliam.cursomc.domain;
 
 import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,7 +31,7 @@ private static final long serialVersionUID = 1L;
     private Cidade cidade;
 
     //Um cliente pode ter varios Enderecos
-    @JsonBackReference
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "cliente_id") //nome do campo de chave estrangeira cliente na tabela Endereço
     private Cliente cliente;

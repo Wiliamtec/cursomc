@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,7 +28,7 @@ public class Categoria implements Serializable{
     // nesse casso nosso endpoint consuta categoria trara uma lista de produtos , para isso marcamos no relacionamento de Categoria com Produto
     //@JsonManagedReference e do outro lado do relacionamento @JsonBackReference (Que diz que o outro lado da associação ja buscou os objetos e sendo assim não buscara mais)
     
-    @JsonManagedReference
+   
     @ManyToMany(mappedBy = "categorias")
     private List<Produto> produtos = new ArrayList<>();
 
